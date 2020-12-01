@@ -2,11 +2,19 @@ import java.util.Scanner;
 
 public class Poker {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         String p1name;
-        String[] cardsInDeck;
-        String[] p1Hand;
+
+        //create deck
+        Deck d = new Deck();
+
+        Hand h1 = new Hand(d);
+
+        Hand h2 = new Hand(d);
+
+
+
 
         //prompt player1 for their name
         System.out.println("Player 1: Please enter your name. ");
@@ -18,36 +26,32 @@ public class Poker {
 
         Player p1 = new Player();
 
+        Player p2 = new Player();
+
         p1.setName(p1name);
 
         System.out.println("Hello " + p1.getName() + ".");
 
-        //create deck
-        Deck d = new Deck();
+        int cardsLeft = d.getRemainingCards();
 
-        //store cards in array to form deck
-        d.shuffleDeck();
+        System.out.println(cardsLeft);
 
+        h1.showHand();
 
-        //deal to player 1
-        p1Hand = d.Deal();
+        h1.showScore();
 
-        //get deck
-        cardsInDeck = d.getDeck();
+        h2.showScore();
 
+        if (h1.compareHands(h2) == 1){
+            System.out.println(p1.getName() + " wins!");
+        } else{
+            System.out.println("P2 wins!");
+        }
 
-//        for (int i = 0; i < cardsInDeck.length; i++){
-//            System.out.println("Cards in deck: " + cardsInDeck[i]);
-//        }
-//
-//        for (int i = 0; i < p1Hand.length; i++){
-//            System.out.println("Cards in hand: " + p1Hand[i]);
-//        }
 
 
 
 
 
     }
-
 }

@@ -1,40 +1,43 @@
 import org.apache.commons.lang3.ArrayUtils;
+import java.util.Random;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Deck {
-    private String[] cardsInDeck;
-    private String[] handDealt;
-    private String[] suits = {"Spades", "Hearts", "Diamonds", "clubs"};
-    private String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9",
-            "10", "J", "Q", "K"};
 
+    private ArrayList<Card> cards;
 
-    public void shuffleDeck() {
+    Deck(){
+        cards = new ArrayList<Card>();
+//        int i, j;
+//
+//        Card temp;
 
-        for (int j = 0; j < suits.length; j++) {
-            for (int i = 0; i < ranks.length; i++) {
-                String value = ranks[i] + " of " + suits[j];
-                this.cardsInDeck = ArrayUtils.add(cardsInDeck, value);
+        for (short i = 0; i <= 3; i++){
+            for (short j = 0; j<=12; j++){
+                cards.add(new Card(i,j));
             }
         }
     }
 
-    public String[] getDeck() {
-        return cardsInDeck;
+    public Card drawCard(){
+        Random getRandom = new Random();
+        int index = getRandom.nextInt( cards.size() - 1);
+        return cards.remove(index);
     }
 
-    public String[] Deal(){
+    public int getRemainingCards(){
 
-
-
-        for (int i = 0; i <= 5; i++){
-            int index = (int)(Math.random()+10);
-            String value = cardsInDeck[index];
-            this.handDealt = ArrayUtils.add(handDealt, value);
-            this.cardsInDeck = ArrayUtils.remove(cardsInDeck, index);
-        }
-
-        return handDealt;
+        return cards.size();
 
     }
+
+
+
+
+
+
+
+
 
 }
